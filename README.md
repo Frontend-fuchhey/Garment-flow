@@ -65,4 +65,4 @@ npm run dev
 [ ] Multi-store synchronization for chain boutiques.
 
 🤝 Contact
-Developed by [Frontend-fuchhey] Applying modern web standards to the specific needs of the garment industry.
+Developed by =Rato topi Applying modern web standards to the specific needs of the garment industry.
