@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Garment ERP Design System - Industrial Professional Theme */
+
+@layer base {
+  :root {
+    /* Main backgrounds */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+
+    /* Cards with subtle elevation */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    /* Popovers */
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Primary - Industrial Teal */
+    --primary: 185 65% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary - Cool Gray */
+    --secondary: 210 15% 93%;
+    --secondary-foreground: 215 25% 25%;
+
+    /* Muted surfaces */
+    --muted: 210 15% 95%;
+    --muted-foreground: 215 15% 45%;
+
+    /* Accent - Teal highlight */
+    --accent: 185 50% 92%;
+    --accent-foreground: 185 65% 30%;
+
+    /* Status colors */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --success: 152 60% 40%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 95% 15%;
+    
+    --info: 200 80% 50%;
+    --info-foreground: 0 0% 100%;
+
+    /* Borders and inputs */
+    --border: 214 20% 88%;
+    --input: 214 20% 88%;
+    --ring: 185 65% 35%;
+
+    --radius: 0.5rem;
+
+    /* Sidebar - Dark slate */
+    --sidebar-background: 215 28% 17%;
+    --sidebar-foreground: 210 20% 85%;
+    --sidebar-primary: 185 65% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 25% 22%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 215 20% 25%;
+    --sidebar-ring: 185 65% 50%;
+    --sidebar-muted: 215 15% 40%;
+
+    /* Chart colors */
+    --chart-1: 185 65% 45%;
+    --chart-2: 152 60% 45%;
+    --chart-3: 38 92% 55%;
+    --chart-4: 280 60% 55%;
+    --chart-5: 0 72% 55%;
+  }
+
+  .dark {
+    --background: 215 30% 10%;
+    --foreground: 210 20% 95%;
+
+    --card: 215 28% 14%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 215 28% 14%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 185 65% 45%;
+    --primary-foreground: 215 30% 10%;
+
+    --secondary: 215 25% 20%;
+    --secondary-foreground: 210 20% 90%;
+
+    --muted: 215 25% 18%;
+    --muted-foreground: 215 15% 60%;
+
+    --accent: 185 40% 20%;
+    --accent-foreground: 185 65% 70%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 55% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 90% 55%;
+    --warning-foreground: 38 95% 10%;
+
+    --info: 200 75% 55%;
+    --info-foreground: 0 0% 100%;
+
+    --border: 215 20% 22%;
+    --input: 215 20% 22%;
+    --ring: 185 65% 45%;
+
+    --sidebar-background: 215 32% 12%;
+    --sidebar-foreground: 210 20% 85%;
+    --sidebar-primary: 185 65% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 25% 18%;
+    --sidebar-accent-foreground: 210 20% 95%;
+    --sidebar-border: 215 20% 18%;
+    --sidebar-ring: 185 65% 50%;
+    --sidebar-muted: 215 15% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+  
+  /* Mono numbers for data */
+  .font-mono-data {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer components {
+  /* Status badges */
+  .status-success {
+    @apply bg-success/15 text-success border border-success/30;
+  }
+  
+  .status-warning {
+    @apply bg-warning/15 text-warning-foreground border border-warning/30;
+  }
+  
+  .status-danger {
+    @apply bg-destructive/15 text-destructive border border-destructive/30;
+  }
+  
+  .status-info {
+    @apply bg-info/15 text-info border border-info/30;
+  }
+  
+  /* Card variants */
+  .card-metric {
+    @apply bg-card rounded-lg border border-border p-5 shadow-sm transition-all hover:shadow-md;
+  }
+  
+  /* Data table styles */
+  .data-cell {
+    @apply font-mono-data text-sm;
+  }
+  
+  /* Summary row */
+  .summary-row {
+    @apply bg-muted/50 font-semibold border-t-2 border-border;
+  }
+  
+  /* Low stock alert */
+  .low-stock-alert {
+    @apply bg-warning/10 border-l-4 border-warning rounded-r-md p-3;
+  }
+  
+  /* Gradient header */
+  .header-gradient {
+    @apply bg-gradient-to-r from-primary to-primary/80 text-primary-foreground;
+  }
+}
+
+@layer utilities {
+  /* Smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  /* Focus ring */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
+  }
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    background-color: white !important;
+  }
+
+  @page {
+    margin: 1cm;
+    size: auto;
+  }
+
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Force elements to span full width */
+  .container {
+    max-width: none !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Remove background colors and shadows for cleaner print if necessary, 
+     but preserve specified colors */
+  * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
