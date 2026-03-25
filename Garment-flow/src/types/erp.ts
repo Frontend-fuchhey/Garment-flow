@@ -54,8 +54,12 @@ export interface Sale {
   clientName: string;
   items: SaleItem[];
   totalRevenue: number;
+  vatAmount?: number;
+  isVatInclusive: boolean;
   paymentMethod: PaymentMethod;
   timestamp: Date;
+  groupId?: string; // For in-place grouping
+  groupInvoiceNumber?: string;
 }
 
 export interface SaleItem {

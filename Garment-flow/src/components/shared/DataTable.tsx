@@ -13,6 +13,7 @@ export interface Column<T> {
   header: string;
   className?: string;
   render?: (item: T) => React.ReactNode;
+  renderHeader?: () => React.ReactNode;
 }
 
 interface DataTableProps<T> {
@@ -21,6 +22,7 @@ interface DataTableProps<T> {
   summaryRow?: React.ReactNode;
   emptyMessage?: string;
   onRowClick?: (item: T) => void;
+  rowClassName?: (item: T) => string;
 }
 
 export function DataTable<T extends { id: string }>({
@@ -29,6 +31,7 @@ export function DataTable<T extends { id: string }>({
   summaryRow,
   emptyMessage = "No data available",
   onRowClick,
+  rowClassName,
 }: DataTableProps<T>) {
   const getCellValue = (item: T, column: Column<T>) => {
     if (column.render) {
@@ -61,7 +64,7 @@ export function DataTable<T extends { id: string }>({
                 key={column.key as string}
                 className={cn("font-semibold text-foreground", column.className)}
               >
-                {column.header}
+                {column.renderHeader ? column.renderHeader() : column.header}
               </TableHead>
             ))}
           </TableRow>
@@ -74,7 +77,8 @@ export function DataTable<T extends { id: string }>({
               className={cn(
                 "transition-colors",
                 onRowClick && "cursor-pointer",
-                index % 2 === 0 ? "bg-card" : "bg-muted/30"
+                index % 2 === 0 ? "bg-card" : "bg-muted/30",
+                rowClassName?.(item)
               )}
             >
               {columns.map((column) => (

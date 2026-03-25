@@ -42,6 +42,8 @@ interface ERPState {
 
   // Actions - Sales
   addSale: (sale: Omit<Sale, 'id'>) => void;
+  groupSales: (ids: string[]) => void;
+  ungroupSales: (groupId: string) => void;
 
   // Actions - Waste
   addWasteRecord: (waste: Omit<WasteRecord, 'id'>) => void;
@@ -193,6 +195,7 @@ export const useERPStore = create<ERPState>()(
             { productName: 'Cotton Pants', quantity: 50, pricePerUnit: 25, total: 1250 },
           ],
           totalRevenue: 2750,
+          isVatInclusive: false,
           paymentMethod: 'Bank',
           timestamp: new Date(Date.now() - 86400000 * 7),
         },
@@ -370,6 +373,7 @@ export const useERPStore = create<ERPState>()(
             },
           ],
           totalRevenue: order.totalAmount,
+          isVatInclusive: false,
           paymentMethod: order.paymentMethod,
           timestamp: new Date(),
         };
@@ -386,6 +390,23 @@ export const useERPStore = create<ERPState>()(
       addSale: (sale) =>
         set((state) => ({
           sales: [...state.sales, { ...sale, id: generateId() }],
+        })),
+
+      groupSales: (ids) =>
+        set((state) => {
+          const groupId = generateId();
+          const groupInvoiceNumber = `GRP-${Math.floor(1000 + Math.random() * 9000)}`;
+          const updatedSales = state.sales.map((s) => 
+            ids.includes(s.id) ? { ...s, groupId, groupInvoiceNumber } : s
+          );
+          return { sales: updatedSales };
+        }),
+
+      ungroupSales: (groupId) =>
+        set((state) => ({
+          sales: state.sales.map((s) => 
+            s.groupId === groupId ? { ...s, groupId: undefined, groupInvoiceNumber: undefined } : s
+          )
         })),
 
   // Waste actions
