@@ -1,9 +1,4 @@
-This is a professional and high-energy pitch! Since you’ve already successfully pushed your code to Garment-flow, a great README.md is the final step to make your repository look elite to recruiters or other developers.
 
-Here is a custom, high-impact README based on your project details.
-
-Instructions to add this to your project:
-In your final-tension folder, create a new file named README.md.
 
 Paste the content below into that file.
 
